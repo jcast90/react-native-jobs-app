@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
 
+import store from './Store';
 import AuthScreen from './Screens/AuthScreen';
 import WelcomeScreen from './Screens/WelcomeScreen';
 import MapScreen from './Screens/MapScreen';
@@ -22,12 +24,19 @@ export default class App extends React.Component {
           settings: SettingsScreen
         })
       })
-    });
+    }, {
+        navigationOptions: {
+          tabBarVisible: false
+        },
+        lazy: true
+      });
 
     return (
-      <View style={styles.container}>
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }
