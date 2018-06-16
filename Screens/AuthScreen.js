@@ -6,11 +6,18 @@ import * as actions from '../Actions'
 class AuthScreen extends Component {
   componentDidMount() {
     this.props.facebookLogin();
-    this.onAuthComplete(this.props)
+    this.onAuthComplete(this.props);
+    // AsyncStorage.removeItem('fb_token')
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.onAuthComplete(nextProps)
   }
 
   onAuthComplete(props) {
+    console.log('completed: ',props)
     if (props.token) {
+      console.log('true: ',props.token)
       this.props.navigation.navigate('map');
     }
   }
