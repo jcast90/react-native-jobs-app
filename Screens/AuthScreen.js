@@ -7,15 +7,17 @@ class AuthScreen extends Component {
   componentDidMount() {
     this.props.facebookLogin();
     this.onAuthComplete(this.props);
-    // AsyncStorage.removeItem('fb_token')
+    console.log('fb logging: ', this.props)
+    AsyncStorage.removeItem('fb_token')
   }
 
-  componentWillReceiveProps(nextProps){
-    this.onAuthComplete(nextProps)
+  componentWillReceiveProps(nextProps) {
+    console.log('will recieved: ', nextProps)
+    this.onAuthComplete(nextProps);
   }
 
   onAuthComplete(props) {
-    console.log('completed: ',props)
+    console.log('completed', props)
     if (props.token) {
       console.log('true: ',props.token)
       this.props.navigation.navigate('map');
@@ -24,8 +26,7 @@ class AuthScreen extends Component {
 
   render() {
     return (
-      <View>
-      </View>
+      <View />
     )
   };
 }
